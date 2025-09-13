@@ -1,0 +1,40 @@
+from flask import Flask, jsonify
+import random
+import mysql.connector
+
+app = Flask(__name__)
+
+# MySQL Database Connection
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="yourpassword",
+    database="smartwater"
+)
+cursor = db.cursor()
+
+@app.route('/api/data')
+def get_data():
+    # Simulated values (replace with sensor integration)
+    tank_level = random.randint(20, 100)
+    daily_usage = random.randint(100, 500)
+    alert = ""
+
+    if tank_level < 30:
+        alert = "Tank water level is low!"
+    elif daily_usage > 400:
+        alert = "Unusual high usage detected!"
+
+    # Insert into DB
+    cursor.execute("INSERT INTO water_logs (tank_level, daily_usage, alert) VALUES (%s, %s, %s)", 
+                   (tank_level, daily_usage, alert))
+    db.commit()
+
+    return jsonify({
+        "tank_level": tank_level,
+        "daily_usage": daily_usage,
+        "alert": alert
+    })
+
+if __name__ == '__main__':
+    app.run(debug=True)
