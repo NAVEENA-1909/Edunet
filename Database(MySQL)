@@ -1,0 +1,11 @@
+CREATE DATABASE smartwater;
+
+USE smartwater;
+
+CREATE TABLE water_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tank_level INT,
+    daily_usage INT,
+    alert VARCHAR(255),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
