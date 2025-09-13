@@ -1,0 +1,16 @@
+async function fetchData() {
+  const res = await fetch("http://127.0.0.1:5000/api/data");
+  const data = await res.json();
+
+  document.getElementById("tankLevel").innerText = data.tank_level + "%";
+  document.getElementById("usage").innerText = data.daily_usage + " Liters";
+
+  if (data.alert) {
+    document.getElementById("alertBox").style.display = "block";
+    document.getElementById("alertMsg").innerText = data.alert;
+  } else {
+    document.getElementById("alertBox").style.display = "none";
+  }
+}
+
+setInterval(fetchData, 2000);
