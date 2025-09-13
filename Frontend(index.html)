@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Water Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>💧 Smart Water Management Dashboard</h1>
+
+  <div class="card">
+    <h2>Tank Level</h2>
+    <p id="tankLevel">Loading...</p>
+  </div>
+
+  <div class="card">
+    <h2>Daily Usage</h2>
+    <p id="usage">Loading...</p>
+  </div>
+
+  <div class="card alert" id="alertBox" style="display:none;">
+    <h2>⚠ Alert</h2>
+    <p id="alertMsg"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
